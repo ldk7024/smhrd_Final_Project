@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.mapper.muscleMapper">   <!-- 패키지와 클래스를 해두기 인터페이스 이름이랑 똑같아야함 보드매퍼에서 이 네임스페이스를 통해서 찾아온다 -->
+    
+    
+   <select id="musclevideoAjax1" resultType="muscleVO">  <!-- 백과사전 단어 검색 해주고 영상 가져옴  -->
+      select video from dic_tbl where word like CONCAT('%',#{word},'%')
+   </select>
+   <select id="musclevideoAjax2" resultType="muscle1VO">  <!-- 백과사전 단어 검색 해주고 영상 가져옴  -->
+      select video from dic_tbl where word like CONCAT('%',#{word},'%')
+   </select>
+   
+   
+   <select id="login" resultType="userVO">
+       select * from tbl_user where id=#{id} and pw=#{pw}
+   </select>
+   
+   <!-- 회원가입 기능 -->
+   <insert id="joinfunction">
+      insert into tbl_user(id, pw, name, tel)
+      values(#{id},#{pw},#{name},#{tel})
+   </insert>
+   
+   
+   <!-- 게시글 목록 출력 -->
+   <select id="boardList" resultType="userVO">  <!-- DAO에 있는 리스트 뒤에 보드리스트를 가져옴 -->
+        select * from board_tbl
+    </select>
+    
+   <!-- 게시글 작성 기능 -->
+   <insert id="boardInsert" parameterType="userVO">
+        insert into board_tbl(title,content,id) 
+        values(#{title},#{content},#{id})
+    </insert>
+    
+ 
+     <!-- 댓글 작성 기능 -->
+     <insert id="commentInsert" parameterType="commentVO">
+        insert into comment_tbl(comment, idx_b, id) 
+        values(#{comment},#{idx_b},#{id})
+    </insert>
+	  <update id="memberupdate" parameterType="userVO">
+        update tbl_user set pw=#{pw}, tel=#{tel} where id=#{id}
+     </update>
+       <select id="returnmypage" resultType="userVO">
+         select * from tbl_user where id=#{id}
+     </select>
+     
+     <update id="mypageupdate" parameterType="boardVO">
+        update board_tbl set title=#{title}, content=#{content} where idx_b=#{idx_b}
+     </update>
+   
+     <select id="returnmypagecontent" resultType="boardVO">
+         select * from board_tbl where idx_b=#{idx_b}
+     </select>
+     
+ <!--     <delete id="mypagedelete" parameterType="boardVO">
+        한개짜리는 idx->cnt로 바꿔도 되지만
+        delete from board_tbl where idx_b=#{idx_b}
+    </delete> -->
+    
+     
+     
+
+
+</mapper>

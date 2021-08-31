@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- DB접속 관련 설정(API를 등록-2개-지윤(HikariCP(API필요)-히카리), 은혜(MY BATIS-Spring)(브릿지 역할 (연결?))) -->
+	<!-- HikariCP: 디비와의 커넥션 풀을 관리해준다. 스레드가 커넥션을 요청하고 히카리는 퓰내에 있는 커넥션을 관리해줌 -->
+	<!-- bean=객체생성한다 스프링 컨테이너에! -->
+	
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mysql" />
+		<property name="username" value="root" />
+		<property name="password" value="12345" />    <!-- value: 정보를 넣어줌 -->
+	</bean>
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close"><!-- close: connrction pool연결 끈기? -->
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">  <!-- copy qul어쩌고 네임 하고 클래스 지운거!-->
+       <property name="dataSource" ref="dataSource"/>    
+       <property name="configLocation" value="/WEB-INF/mybatis/config.xml"/>  
+   </bean>
+
+	<!-- mapper intreface를 spring Container에 로딩하고 MapperXML과 내부적으로 연결시키는 동작 (scan)-->
+	<mybatis-spring:scan base-package="kr.co.mapper"/>
+	
+</beans>

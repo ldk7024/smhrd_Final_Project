@@ -1,4 +1,4 @@
-# mhrd_Final_Project
+# Smhrd_Final_Project
 ## 농인과 청인 간 원활한 의사소통을 위한 수어영상 음성번역 서비스
 ![캡처DADAD](https://user-images.githubusercontent.com/65816974/131450162-bff942ff-dcd6-4997-87ce-7565b86ae0ab.PNG)
 

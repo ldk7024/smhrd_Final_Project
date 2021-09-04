@@ -74,3 +74,7 @@
 - 장애인들의 사회 참여 및 경제활동 유도
 - 일반인들의 수어에 대한 관심도 증가
 - 국민의 권리에 대한 보장
+
+### 07. 포트폴리오
+![fafdajdf;lkshd](https://user-images.githubusercontent.com/65816974/132091128-4089218b-5373-4b56-abe6-83681fb3ed8e.PNG)
+![aadadadad](https://user-images.githubusercontent.com/65816974/132091141-ed454939-88d9-4649-8705-fa05beb52fc3.PNG)
